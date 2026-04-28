@@ -10,8 +10,11 @@
     "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "./dist"
+    "sourceMap": true
   },
-  "exclude": ["node_modules", "dist"]
+  "files": [],
+  "references": [
+    { "path": "packages/shared" },
+    { "path": "apps/api" }
+  ]
 }

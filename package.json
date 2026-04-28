@@ -5,8 +5,18 @@
   "description": "Beauty/Wellness Radius-Based Discount Marketplace",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "dev": "echo 'Development mode'",
-    "build": "echo 'Build'",
-    "test": "echo 'Tests'"
+    "dev": "pnpm --filter @beauty/api dev",
+    "build": "pnpm --filter @beauty/api build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -b apps/api/tsconfig.json packages/shared/tsconfig.json",
+    "db:generate": "pnpm --filter @beauty/api db:generate",
+    "db:migrate": "pnpm --filter @beauty/api db:migrate",
+    "db:studio": "pnpm --filter @beauty/api db:studio",
+    "ci": "pnpm typecheck && pnpm test"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
   }
 }
