@@ -1,0 +1,12 @@
+{
+  "name": "beauty-marketplace",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Beauty/Wellness Radius-Based Discount Marketplace",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "echo 'Development mode'",
+    "build": "echo 'Build'",
+    "test": "echo 'Tests'"
+  }
+}
