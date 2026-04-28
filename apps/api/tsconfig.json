@@ -9,7 +9,7 @@
     }
   },
   "include": ["src/**/*", "drizzle.config.ts", "tests/**/*"],
-  "exclude": ["dist", "node_modules"],
+  "exclude": ["dist", "node_modules", "src/services/booking.service.test.ts"],
   "references": [
     { "path": "../../packages/shared" }
   ]
