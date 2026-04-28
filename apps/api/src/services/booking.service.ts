@@ -24,7 +24,7 @@ import type { IdempotencyCheck, BookingResult, BookingError, BookingOK } from '.
 
 const IDEMPOTENCY_TTL_MS = 5 * 60 * 1000
 
-export async function findIdempotentBooking(key: string): Promise<Booking | null> {
+export function findIdempotentBooking(key: string): Booking | null {
   const db = getDb()
   const rows = db.select().from(bookings).where(eq(bookings.idempotencyKey, key)).all()
   if (rows.length === 0) return null
@@ -34,12 +34,12 @@ export async function findIdempotentBooking(key: string): Promise<Booking | null
   return row as Booking
 }
 
-export async function createHeldBooking(
+export function createHeldBooking(
   userId: string,
   slotId: string,
   distanceKm: number,
   idempotencyKey: string,
-): Promise<BookingResult> {
+): BookingResult {
   // Idempotency
   const existing = await findIdempotentBooking(idempotencyKey)
   if (existing) return { ok: true, booking: existing }
@@ -110,10 +110,10 @@ export async function createHeldBooking(
   return result
 }
 
-export async function confirmPayment(
+export function confirmPayment(
   bookingId: string,
   paymentId: string,
-): Promise<BookingResult> {
+): BookingResult {
   const db = getDb()
 
   const result = db.transaction((): BookingResult => {
@@ -138,7 +138,7 @@ export async function confirmPayment(
   return result
 }
 
-export async function confirmVisit(bookingId: string): Promise<BookingResult> {
+export function confirmVisit(bookingId: string): BookingResult {
   const db = getDb()
 
   const result = db.transaction((): BookingResult => {
@@ -163,7 +163,7 @@ export async function confirmVisit(bookingId: string): Promise<BookingResult> {
   return result
 }
 
-export async function completeVisit(bookingId: string): Promise<BookingResult> {
+export function completeVisit(bookingId: string): BookingResult {
   const db = getDb()
 
   const result = db.transaction((): BookingResult => {
@@ -185,7 +185,7 @@ export async function completeVisit(bookingId: string): Promise<BookingResult> {
   return result
 }
 
-export async function cancelBooking(bookingId: string): Promise<BookingResult> {
+export function cancelBooking(bookingId: string): BookingResult {
   const db = getDb()
 
   const result = db.transaction((): BookingResult => {
@@ -247,7 +247,7 @@ export async function cancelBooking(bookingId: string): Promise<BookingResult> {
   return result
 }
 
-export async function processTimeouts(): Promise<number> {
+export function processTimeouts(): number {
   const db = getDb()
   let cancelled = 0
 
@@ -296,13 +296,13 @@ export async function processTimeouts(): Promise<number> {
   return cancelled
 }
 
-export async function getBooking(bookingId: string): Promise<Booking | null> {
+export function getBooking(bookingId: string): Booking | null {
   const db = getDb()
   const rows = db.select().from(bookings).where(eq(bookings.id, bookingId)).all()
   return rows.length > 0 ? (rows[0] as Booking) : null
 }
 
-export async function isUserRestricted(userId: string): Promise<boolean> {
+export function isUserRestricted(userId: string): boolean {
   const db = getDb()
   const rows = db.select().from(users).where(eq(users.id, userId)).all()
   if (rows.length === 0) return false
