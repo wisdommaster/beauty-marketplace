@@ -1,0 +1,43 @@
+export const MOCK_STUDIOS = [
+    {
+        id: 'studio-1',
+        name: 'Devi Studio',
+        address: 'Москва, Тверская, 1',
+        lat: 55.7601,
+        lon: 37.6178,
+        category: 'hair',
+        tariff: 'maximum',
+        yandexRating: 4.8,
+    },
+    {
+        id: 'studio-2',
+        name: 'Top Face',
+        address: 'Москва, Арбат, 12',
+        lat: 55.7494,
+        lon: 37.5945,
+        category: 'cosmetology',
+        tariff: 'growth',
+        yandexRating: 4.6,
+    },
+    {
+        id: 'studio-3',
+        name: 'Top Nails',
+        address: 'Москва, Новый Арбат, 15',
+        lat: 55.7517,
+        lon: 37.5882,
+        category: 'nails',
+        tariff: 'growth',
+        yandexRating: 4.5,
+    },
+    {
+        id: 'studio-4',
+        name: 'Yoga Space',
+        address: 'Москва, Садовая, 22',
+        lat: 55.7680,
+        lon: 37.6500,
+        category: 'yoga',
+        tariff: 'start',
+        yandexRating: 4.3,
+    },
+];
+//# sourceMappingURL=studios.js.map

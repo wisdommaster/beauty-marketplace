@@ -3,12 +3,13 @@
   "compilerOptions": {
     "composite": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "paths": {
       "@beauty/shared": ["../../packages/shared/src/index.ts"]
     }
   },
-  "include": ["src/**/*", "drizzle.config.ts"],
+  "include": ["src/**/*", "drizzle.config.ts", "tests/**/*"],
+  "exclude": ["dist", "node_modules"],
   "references": [
     { "path": "../../packages/shared" }
   ]

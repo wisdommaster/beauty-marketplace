@@ -84,8 +84,8 @@ describe('scoreSlot', () => {
         categoryType: 'adjacent',
       }
       const { score } = scoreSlot(input)
-      // distanceFactor=1, discountFactor=1, urgencyFactor=1, modifier=1.0, tariff=1.0
-      expect(score).toBeCloseTo(1.0)
+      // baseScore=0.60 (df=1.0×0.35 + dcf=0×0.40 + uf=1.0×0.25), modifier=1.0, tariff=1.0 → 0.60
+      expect(score).toBeCloseTo(0.60)
     })
 
     it('baseScore = (0.35 × df) + (0.40 × dcf) + (0.25 × uf)', () => {
@@ -117,17 +117,20 @@ describe('scoreSlot', () => {
 
     it('preferred = ×1.5', () => {
       const { score } = scoreSlot({ ...baseNoMod, categoryType: 'preferred' })
-      expect(score).toBeCloseTo(1.5, 5)
+      // baseScore=0.60, modifier=1.5, tariff=1.0 → 0.90
+      expect(score).toBeCloseTo(0.90, 5)
     })
 
     it('adjacent = ×1.0', () => {
       const { score } = scoreSlot({ ...baseNoMod, categoryType: 'adjacent' })
-      expect(score).toBeCloseTo(1.0, 5)
+      // baseScore=0.60, modifier=1.0, tariff=1.0 → 0.60
+      expect(score).toBeCloseTo(0.60, 5)
     })
 
     it('discovery = ×0.8', () => {
       const { score } = scoreSlot({ ...baseNoMod, categoryType: 'discovery' })
-      expect(score).toBeCloseTo(0.8, 5)
+      // baseScore=0.60, modifier=0.8 → 0.48
+      expect(score).toBeCloseTo(0.48, 5)
     })
 
     it('preferred > adjacent > discovery', () => {
@@ -168,8 +171,8 @@ describe('scoreSlot', () => {
         categoryType: 'adjacent',
       }
       const { score } = scoreSlot(noModInput)
-      // baseScore=1.0, modifier=1.0, tariff=2.5
-      expect(score).toBeCloseTo(2.5, 5)
+      // baseScore=0.60 (distance 1.0×0.35 + discount 0×0.40 + urgency 1.0×0.25), ×1.0×2.5 → 1.5
+      expect(score).toBeCloseTo(1.5, 5)
     })
   })
 })
