@@ -4,6 +4,7 @@ import { authRoutes } from './routes/auth.routes'
 import { bookingRoutes } from './routes/booking.routes'
 import { businessRoutes } from './routes/business.routes'
 import { adminRoutes } from './routes/admin.routes'
+import { feedRoutes } from './routes/feed.routes'
 
 const app = new Hono()
 
@@ -17,6 +18,7 @@ app.route('/api/auth', authRoutes)
 app.route('/api/bookings', bookingRoutes)
 app.route('/api/business', businessRoutes)
 app.route('/api/admin', adminRoutes)
+app.route('/api/feed', feedRoutes)
 
 export { app }
 export default app
