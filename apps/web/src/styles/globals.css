@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-rose: #D4A0A0;
+  --color-gold: #C9A96E;
+  --color-cream: #FAF7F2;
+  --color-dark: #2D2D2D;
+  --color-sage: #B7C4B0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
